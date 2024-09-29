@@ -1,15 +1,24 @@
+import Link from "next/link";
+
 export default function HomePage() {
   return (
     <div>
       <main>
-        <h5>TBD</h5>
         <h1>Wishlist For Friends</h1>
-        <p>
-          This application is a tool that allows users to create and manage
-          lists of desired items or services. These applications are popular
-          among shoppers, gift enthusiasts, and people who want to plan their
-          purchases.
-        </p>
+        <ul>
+          <li>
+            <Link href="/about-us">About us</Link>
+          </li>
+          <li>
+            <Link href="/how-it-works">How it works</Link>
+          </li>
+          <li>
+            <Link href="/log-in">Log in</Link>
+          </li>
+          <li>
+            <Link href="/sign-in">Sign in</Link>
+          </li>
+        </ul>
       </main>
       <footer></footer>
     </div>
