@@ -7,22 +7,22 @@ export default function HomePage() {
       <Box component="main">
         <Typography variant="h1">Wishlist For Friends</Typography>
         <Box component="ul">
-          <Box>
+          <Box component="li">
             <Typography component={Link} href="/about-us">
               About us
             </Typography>
           </Box>
-          <Box>
+          <Box component="li">
             <Typography component={Link} href="/how-it-works">
               How it works
             </Typography>
           </Box>
-          <Box>
+          <Box component="li">
             <Typography component={Link} href="/log-in">
               Log in
             </Typography>
           </Box>
-          <Box>
+          <Box component="li">
             <Typography component={Link} href="/sign-in">
               Sign in
             </Typography>
