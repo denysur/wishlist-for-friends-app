@@ -1,9 +1,10 @@
+import { Typography } from "@mui/material";
 import Link from "next/link";
 
 export default function AboutUs() {
   return (
     <div>
-      <h1>About us</h1>
+      <Typography variant="h1">About us</Typography>
       <Link href="/">Go home</Link>
     </div>
   );
