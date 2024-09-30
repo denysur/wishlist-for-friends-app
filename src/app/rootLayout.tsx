@@ -1,5 +1,8 @@
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import localFont from "next/font/local";
-import "../globals.css";
+import { ThemeProvider } from "@mui/material";
+import "@/globals.css";
+import theme from "@/theme";
 
 const archivoBlack = localFont({
   src: "../fonts/ArchivoBlack-Regular.ttf",
@@ -20,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${archivoBlack.variable} ${notoSans.variable}`}>
-        {children}
+        <ThemeProvider theme={theme}>
+          <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
