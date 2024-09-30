@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import RootLayout from "../layout";
+import RootLayout from "../rootLayout";
 
 export const metadata: Metadata = {
   title: "About us - Wishlist for friends",

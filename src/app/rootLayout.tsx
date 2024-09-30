@@ -19,6 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico?v=5" sizes="any" />
+      </head>
       <body className={`${archivoBlack.variable} ${notoSans.variable}`}>
         {children}
       </body>
