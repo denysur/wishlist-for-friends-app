@@ -44,6 +44,8 @@ export function useTranslation(lng: string, ns: string) {
     i18n.changeLanguage(lng);
   }
 
+  console.log("localization clietn");
+
   const [activeLng, setActiveLng] = useState(i18n.resolvedLanguage);
 
   useEffect(() => {
