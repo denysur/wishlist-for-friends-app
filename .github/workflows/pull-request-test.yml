@@ -1,0 +1,23 @@
+name: PR test
+on:
+  pull_request:
+    branhes: ["main", "production"]
+jobs:
+  lint-and-build:
+    name: "Lint an build"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+
+      - name: Install dependecies
+        run: npm ci
+
+      - name: Run lint
+        run: npm run test:lint
+
+      - name: Run build preview
+        run: npm run build
