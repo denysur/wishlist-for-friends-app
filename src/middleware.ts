@@ -14,11 +14,15 @@ export const config = {
 // taken from
 // https://locize.com/blog/next-app-dir-i18n/
 export function middleware(request: NextRequest) {
-  let lng;
-  if (request.cookies.has(cookieName))
-    lng = acceptLanguage.get(request.cookies.get(cookieName)?.value);
-  if (!lng) lng = acceptLanguage.get(request.headers.get("Accept-Language"));
-  if (!lng) lng = fallbackLng;
+  let locale;
+  const localeFromCookie = request.cookies.has(cookieName)
+    ? request.cookies.get(cookieName)?.value
+    : undefined;
+
+  if (localeFromCookie) locale = acceptLanguage.get(localeFromCookie);
+  if (!locale)
+    locale = acceptLanguage.get(request.headers.get("Accept-Language"));
+  if (!locale) locale = fallbackLng;
 
   // Redirect if lng in path is not supported
   if (
@@ -26,17 +30,18 @@ export function middleware(request: NextRequest) {
     !request.nextUrl.pathname.startsWith("/_next")
   ) {
     return NextResponse.redirect(
-      new URL(`/${lng}${request.nextUrl.pathname}`, request.url)
+      new URL(`/${locale}${request.nextUrl.pathname}`, request.url)
     );
   }
 
   if (request.headers.has("referer")) {
-    const refererUrl = new URL(request.headers.get("referer") || "");
-    const lngInReferer = languages.find((l) =>
-      refererUrl.pathname.startsWith(`/${l}`)
+    const localeInPathName = languages.find((l) =>
+      request.nextUrl.pathname.startsWith(`/${l}`)
     );
+
     const response = NextResponse.next();
-    if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
+    if (localeInPathName && localeFromCookie !== localeInPathName)
+      response.cookies.set(cookieName, localeInPathName);
     return response;
   }
 
