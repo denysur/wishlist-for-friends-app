@@ -1,9 +1,10 @@
-name: Eslint
+name: PR test
 on:
   pull_request:
     branhes: ["main", "production"]
 jobs:
-  lint:
+  lint-and-build:
+    name: "Lint an build"
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -17,3 +18,6 @@ jobs:
 
       - name: Run lint
         run: npm run test:lint
+
+      - name: Run build preview
+        run: npm run build
